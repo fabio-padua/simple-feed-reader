@@ -91,7 +91,7 @@ jobs:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
 
-  deploy:
+  deploy-stage:
     runs-on: windows-latest
     needs: build
     environment:
@@ -112,6 +112,19 @@ jobs:
           slot-name: 'Stage'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DBF53002490E47C7BC370D3A03E824DB }}
           package: .
+
+  deploy-production:
+    runs-on: windows-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: .net-app
 
       - name: Deploy to Azure Web App - Production
         id: deploy-to-webapp-prod
