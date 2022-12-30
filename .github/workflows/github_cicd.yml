@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: CI/CD using Actions
+name: CI/CD using Github Actions
 
 on:
   push:
@@ -95,6 +95,28 @@ jobs:
     runs-on: windows-latest
     needs: build
     environment:
+      name: 'Stage'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: .net-app
+
+      - name: Deploy to Azure Web App - Stage
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'webappdevsecopssample'
+          slot-name: 'Stage'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_6e5784091f7048d289c1634169ac9fdd }}
+          package: .
+
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
@@ -104,7 +126,7 @@ jobs:
         with:
           name: .net-app
 
-      - name: Deploy to Azure Web App
+      - name: Deploy to Azure Web App - Production
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
