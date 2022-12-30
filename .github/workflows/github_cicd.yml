@@ -110,7 +110,7 @@ jobs:
         with:
           app-name: 'webappdevsecopssample'
           slot-name: 'Stage'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_6e5784091f7048d289c1634169ac9fdd }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DBF53002490E47C7BC370D3A03E824DB }}
           package: .
 
       - name: Deploy to Azure Web App - Production
