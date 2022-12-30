@@ -66,9 +66,25 @@ jobs:
         with:
           category: "/language:${{matrix.language}}"
 
-  build:
+  tests:
     runs-on: windows-latest
     needs: analyze
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Unit Tests Execution
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
+          include-prerelease: true
+
+      - name: Tests with dotnet
+        run: dotnet test --configuration Release
+
+  build:
+    runs-on: windows-latest
+    needs: tests
 
     steps:
       - uses: actions/checkout@v2
