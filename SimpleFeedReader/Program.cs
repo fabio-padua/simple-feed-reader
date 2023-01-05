@@ -3,11 +3,11 @@ namespace SimpleFeedReader;
 public class Program
 {
 
-    const string password = "a#kasdjhfakj0912";
+    // const string password = "a#kasdjhfakj0912";
 
     public static void Main(string[] args)
     {
-        if (password=="") return;
+        // if (password=="") return;
         CreateHostBuilder(args).Build().Run();
     }
 
@@ -15,7 +15,7 @@ public class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                if (password=="") return;
+                // if (password=="") return;
                 webBuilder.UseStartup<Startup>();
             });
 }
