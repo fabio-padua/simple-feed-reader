@@ -15,7 +15,7 @@ public class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                if (password=="") return;
+                if (someString=="") return;
                 webBuilder.UseStartup<Startup>();
             });
 }
