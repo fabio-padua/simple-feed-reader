@@ -3,11 +3,11 @@ namespace SimpleFeedReader;
 public class Program
 {
 
-    const string password = "a#kasdjhfakj0912";
+    const string someString = "a#kasdjhfakj0912";
 
     public static void Main(string[] args)
     {
-        if (password=="") return;
+        if (someString=="") return;
         CreateHostBuilder(args).Build().Run();
     }
 
