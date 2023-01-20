@@ -129,6 +129,29 @@ jobs:
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DBF53002490E47C7BC370D3A03E824DB }}
           package: .
 
+  deploy-qa:
+    runs-on: windows-latest
+    needs: build
+    environment:
+      name: 'QA'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: .net-app
+
+      - name: Deploy to Azure Web App - QA
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'webappdevsecopssample'
+          slot-name: 'QA'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A16FD70B297C4E4D92BD63511A0F2463 }}
+          package: .
+
+
   deploy-production:
     runs-on: windows-latest
     needs: build
