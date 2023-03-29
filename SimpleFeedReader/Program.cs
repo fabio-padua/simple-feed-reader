@@ -7,7 +7,6 @@ public class Program
 
     public static void Main(string[] args)
     {
-        if (someString=="") return;
         CreateHostBuilder(args).Build().Run();
     }
 
@@ -15,7 +14,6 @@ public class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                if (someString=="") return;
                 webBuilder.UseStartup<Startup>();
             });
 }
