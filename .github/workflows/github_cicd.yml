@@ -120,13 +120,19 @@ jobs:
         with:
           name: .net-app
 
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0DBA7892A12D485C94CC9C62D62EDDD9 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CAFA89549A254FF5AB10C6CD4AB8347B }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_2BC3AC12AA70421A91BC9F8C89A7241C }}
+  
       - name: Deploy to Azure Web App - Stage
-        id: deploy-to-webapp-stage
+        id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'webappdevsecopssample'
           slot-name: 'Stage'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DBF53002490E47C7BC370D3A03E824DB }}
           package: .
 
   deploy-qa:
@@ -142,13 +148,19 @@ jobs:
         with:
           name: .net-app
 
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0DBA7892A12D485C94CC9C62D62EDDD9 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CAFA89549A254FF5AB10C6CD4AB8347B }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_2BC3AC12AA70421A91BC9F8C89A7241C }}
+  
       - name: Deploy to Azure Web App - QA
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'webappdevsecopssample'
           slot-name: 'QA'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A16FD70B297C4E4D92BD63511A0F2463 }}
           package: .
 
 
@@ -165,11 +177,17 @@ jobs:
         with:
           name: .net-app
 
-      - name: Deploy to Azure Web App - Production
-        id: deploy-to-webapp-prod
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0DBA7892A12D485C94CC9C62D62EDDD9 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CAFA89549A254FF5AB10C6CD4AB8347B }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_2BC3AC12AA70421A91BC9F8C89A7241C }}
+  
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'webappdevsecopssample'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BD2A40E0287D4FF0ACBF830722BE3649 }}
           package: .
