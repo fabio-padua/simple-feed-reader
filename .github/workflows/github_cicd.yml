@@ -4,9 +4,9 @@
 name: CI/CD using Github Actions
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
 
 jobs:

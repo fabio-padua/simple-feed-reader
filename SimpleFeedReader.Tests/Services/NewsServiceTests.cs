@@ -18,7 +18,7 @@ public class NewsServiceTests
             cfg.AddProfile(new NewsStoryProfile()));
         IMapper mapper = mockMapper.CreateMapper();
 
-        _newsService = new NewsService(mapper);
+        _newsService = new NewsService(mapper, null, null);
     }
 
     [Fact]
