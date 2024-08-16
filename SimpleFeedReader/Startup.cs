@@ -12,8 +12,9 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddScoped<NewsService>();
+        services.AddHttpClient();
         services.AddAutoMapper(typeof(Startup));
-
+    
         services.AddRazorPages();
     }
 

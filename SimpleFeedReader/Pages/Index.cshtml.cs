@@ -24,10 +24,22 @@ namespace SimpleFeedReader.Pages
         public string ErrorText { get; private set; }
 
         public List<NewsStoryViewModel> NewsItems { get; private set; }
+        public List<StockValueViewModel> StockItems { get; private set; }
 
         public async Task OnGet()
         {
             ViewData["Header"] = _configuration.GetValue<string>("UI:Index:Header");
+
+            try {
+                StockItems = await _newsService.GetStock();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (use a logging framework)
+                Console.WriteLine($"An error occurred: {ex.Message}");
+
+            }
+
             string feedUrl = Request.Query["feedurl"];
 
             if (!string.IsNullOrEmpty(feedUrl))
