@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using SimpleFeedReader.Services;
 using SimpleFeedReader.ViewModels;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace SimpleFeedReader.Pages
 {
@@ -26,12 +28,26 @@ namespace SimpleFeedReader.Pages
         public List<NewsStoryViewModel> NewsItems { get; private set; }
         public List<StockValueViewModel> StockItems { get; private set; }
 
+        private void SimulateCpuLoad()
+        {
+            var stopwatch = Stopwatch.StartNew();
+            while (stopwatch.ElapsedMilliseconds < 10000) // Run for 10 seconds
+            {
+                // Perform a CPU-intensive task
+                for (int i = 0; i < 100000; i++)
+                {
+                    double result = Math.Sqrt(i);
+                }
+            }
+        }
+
         public async Task OnGet()
         {
             ViewData["Header"] = _configuration.GetValue<string>("UI:Index:Header");
 
             try {
                 StockItems = await _newsService.GetStock();
+                SimulateCpuLoad()
             }
             catch (Exception ex)
             {
