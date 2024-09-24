@@ -47,7 +47,7 @@ namespace SimpleFeedReader.Pages
 
             try {
                 StockItems = await _newsService.GetStock();
-                SimulateCpuLoad()
+                SimulateCpuLoad();
             }
             catch (Exception ex)
             {
