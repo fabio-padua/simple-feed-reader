@@ -34,7 +34,7 @@ namespace SimpleFeedReader.Pages
             while (stopwatch.ElapsedMilliseconds < 10000) // Run for 10 seconds
             {
                 // Perform a CPU-intensive task
-                for (int i = 0; i < 100000; i++)
+                for (int i = 0; i < 1000000; i++)
                 {
                     double result = Math.Sqrt(i);
                 }
