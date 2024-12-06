@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS builder
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS builder
 WORKDIR /src
 
 # Copy the csproj file and restore dependencies
@@ -12,7 +12,7 @@ COPY ./SimpleFeedReader/. ./
 RUN dotnet publish --configuration Release --output /app/out
 
 # Stage 2: Run
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 COPY --from=builder /app/out .
 
