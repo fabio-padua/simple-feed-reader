@@ -28,6 +28,13 @@ namespace SimpleFeedReader.Pages
         public List<NewsStoryViewModel> NewsItems { get; private set; }
         public List<StockValueViewModel> StockItems { get; private set; }
 
+        /// <summary>
+        /// Simulates a CPU load by performing a CPU-intensive task for a specified duration.
+        /// </summary>
+        /// <remarks>
+        /// This method runs a loop for 10 seconds, during which it performs a computationally 
+        /// intensive operation (calculating the square root of numbers) to simulate CPU load.
+        /// </remarks>
         private void SimulateCpuLoad()
         {
             var stopwatch = Stopwatch.StartNew();

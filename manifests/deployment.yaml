@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp2
+  name: simple-feed-reader
   labels:
-    app: myapp2
+    app: simple-feed-reader
     kubernetes.azure.com/generator: devhub
   namespace: simple-feed-reader
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: myapp2
+      app: simple-feed-reader
   template:
     metadata:
       labels:
-        app: myapp2
+        app: simple-feed-reader
     spec:
       containers:
-        - name: myapp2
-          image: acrfortests.azurecr.io/simple-feed-reader:latest
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 5000
+      - name: simple-feed-reader
+        image: simplefeedreaderacr.azurecr.io/simple-feed-reader:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
